@@ -8,7 +8,7 @@
 <h3 class="title"><a href="./blog?id={{ blog.id }}">{{blog.title}}</a></h3>
 <h4>{{blog.body}}</h4>
 <h5>Published on:&nbsp;&nbsp;{{blog.pub_date}}</h5>
-<h5> Written by: &nbsp;&nbsp;<a href="./blog?userid={{ blog.owner_id }}">{{ blog.owner_id}}</a></h5>
+<h5> Written by: &nbsp;&nbsp;<a href="./blog?userid={{ blog.owner_id }}">{{ blog.owner.username}}</a></h5>
 
 {% endfor %}
 

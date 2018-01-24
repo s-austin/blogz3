@@ -3,10 +3,11 @@
 
 <h1>Build Your Own Blog</h1>
 
-{% for post in posts %}
+{% for blog in blogs %}
 
-<h2 class="title"><a href="./blog?id={{ post.id }}">{{post.title}}</a></h2>
-<p class="body">{{post.body}}</p>
+<h2 class="title"><a href="./blog?id={{ post.id }}">{{blog.title}}</a></h2>
+<p class="body">{{blog.body}}</p>
+<p class="author">Written by {{ blog.owner.username }}</p>
 
 {% endfor %}
 

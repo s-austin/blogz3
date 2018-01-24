@@ -7,24 +7,18 @@
         <title>Blogz</title>
     </head>
 <body>
+    <div class="container">
 
-    <nav style="display:inline-block;">
-        <a href="/">Home</a> |
-        <a href="/blog">All Posts</a> |
-        <a href="/newpost">New Post</a> |  
-        <a href="/signup">Signup</a> |
-        <a href="/login">Login</a> |
-        <a href="/logout">Logout</a> |  
-     </nav>
+        <nav style="display:inline-block;">
+            <a href="/">Home</a> |
+            <a href="/blog">All Posts</a> |
+            <a href="/newpost">New Post</a> |  
+            <a href="/signup">Signup</a> |
+            <a href="/login">Login</a> |
+            <a href="/logout">Logout</a> |  
+        </nav>
 
-
-     {% if loggedin_flag == False %}
-     <p>You are not logged in</p>
-     {% else %}
-     
-     <p>You are logged in</p>
-     
-     {% endif %}
+    </div>
 
     {% block content %}
     {% endblock %}

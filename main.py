@@ -46,7 +46,7 @@ def index():
 
 @app.before_request
 def require_login():
-    allowed_routes = ['index', 'blog','signup','login']
+    allowed_routes = ['index', 'blog','signup','login','static']
     if request.endpoint not in allowed_routes and 'email' not in session:
        loggedin_flag = False
        return redirect('/login')

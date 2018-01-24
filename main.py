@@ -70,19 +70,12 @@ def login():
 
     return render_template('login.html')
 
-# TODO start compare sessions are defined and decide whether email or user id 
 @app.route('/logout')
 def logout():
     if  'email' in session:
         del session['email']
-        loggedin_flag = False
         flash('You are logged out')
         return render_template('login.html')
-    else:
-        loggedin_flag = True
-        flash('You are still logged in')
-        return render_template('logout.html')
-# TODO end for this project use email associated with session email is used as a user ide
 
 @app.route("/blog", methods=['GET'])
 def display_blogs():

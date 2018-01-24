@@ -7,21 +7,24 @@
         <title>Blogz</title>
     </head>
 <body>
-    <div class="container">
-
-        <nav style="display:inline-block;">
-            <a href="/">Home</a> |
-            <a href="/blog">All Posts</a> |
-            <a href="/newpost">New Post</a> |  
-            <a href="/signup">Signup</a> |
-            <a href="/login">Login</a> |
-            <a href="/logout">Logout</a> |  
-        </nav>
-
+    <div class="container-fluid">
+        <div class="row">
+            <nav style="display:inline-block;">
+                <a href="/">Home</a> |
+                <a href="/blog">All Posts</a> |
+                <a href="/newpost">New Post</a> |  
+                <a href="/signup">Signup</a> |
+                <a href="/login">Login</a> |
+                <a href="/logout">Logout</a> |  
+            </nav>
+        </div><!-- row for nav --> 
     </div>
+    <div class="container-fluid" style="background-color:red;">
+        <div class="row">
 
-    {% block content %}
-    {% endblock %}
-
+            {% block content %}
+            {% endblock %}
+        </div><!-- row -->
+    </div><!-- container fluid -->
 </body>
 </html>

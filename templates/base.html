@@ -8,7 +8,9 @@
     </head>
 <body>
     <div class="container-fluid">
+        <a class="sr-only sr-only-focusable" href="#main-content">Skip to main content</a>
         <div class="row">
+            <div class="col">
             <nav style="display:inline-block;">
                 <a href="/">Home</a> |
                 <a href="/blog">All Posts</a> |
@@ -17,13 +19,18 @@
                 <a href="/login">Login</a> |
                 <a href="/logout">Logout</a> |  
             </nav>
+            </div>
         </div><!-- row for nav --> 
     </div>
     <div class="container-fluid" style="background-color:red;">
         <div class="row">
+            <div class="col" id="main-content" name="main-content">
+                <main>
 
-            {% block content %}
-            {% endblock %}
+                {% block content %}
+                {% endblock %}
+                </main>
+            </div><!-- col -->
         </div><!-- row -->
     </div><!-- container fluid -->
 </body>

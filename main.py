@@ -46,13 +46,10 @@ def index():
 
 @app.before_request
 def require_login():
-    loggedin_flag = False
     allowed_routes = ['index', 'blog','signup','login']
     if request.endpoint not in allowed_routes and 'email' not in session:
        loggedin_flag = False
        return redirect('/login')
-    else:
-       loggedin_flag = True   
 
 @app.route('/login', methods=['POST', 'GET'])
 def login():
@@ -94,11 +91,12 @@ def display_blogs():
     #return Blog.query.all()
 
 @app.route('/signup', methods=['POST', 'GET'])
-def register():
+def signup():
     if request.method == 'POST':
         email_error = ''
         password_error = ''
         verify_error = ''
+        username_error = ''
        
         username = request.form['username']
         email = request.form['email']

@@ -50,6 +50,7 @@ def require_login():
     allowed_routes = ['index', 'blog','signup','login']
     if request.endpoint not in allowed_routes and 'email' not in session:
        loggedin_flag = False
+       return redirect('/login')
     else:
        loggedin_flag = True   
 
@@ -99,12 +100,15 @@ def register():
         password_error = ''
         verify_error = ''
        
-        loggedin_flag = False
-
+        username = request.form['username']
         email = request.form['email']
         password = request.form['password']
         verify = request.form['verify']
         
+        if username == "":
+            username_error = "username cannot be blank"
+        elif (len(password)) < 8:
+            username_error = "username has to be at least 8 characters long"
 
         if password == "":
             password_error = "Password cannot be blank"
@@ -115,7 +119,7 @@ def register():
 
         existing_user = User.query.filter_by(email=email).first()
         if not existing_user and not password_error and not verify_error:
-            new_user = User(email, password)
+            new_user = User(email, password, username)
             db.session.add(new_user)
             db.session.flush()   #from Adnan's example flush session to get id of inserted row
             db.session.commit()
@@ -135,7 +139,8 @@ def new_post():
     if request.method == 'POST':
         title = request.form['title']
         body = request.form['body']
-        owner_id = request.form['owner_id']
+        #owner = User.query.filter_by(username=session['username']).first()
+        owner = User.query.filter_by(email=session['email']).first()
         pub_date = datetime.utcnow()
 
         if title == "" or body == "":
@@ -145,16 +150,36 @@ def new_post():
                 body_error = "Please enter a post body"
             return render_template('/newpost.html', title=title, body=body, title_error=title_error, body_error=body_error, owner_id=owner_id)
         else:
-            post = Blog(title, body, owner_id)
+            post = Blog(title, body, owner.id, pub_date)
             db.session.add(post)
             db.session.commit()
-
-            body_id = str(post.id)
-            return redirect("/blog?id=" + body_id)
+            blog = Blog.query.order_by('-id').first()
+            #the hyphen beofre the id is a wildcard for the page page
+            query_param_url = "/blog?id=" + str(blog.id)
+            #body_id = str(post.id)
+            #return redirect("/blog?id=" + body_id)
+            return redirect(query_param_url)
 
     return render_template('/newpost.html')
 
 @app.route('/newpost', methods=['POST', 'GET'])        
+
+@app.route('/singleUser', methods=['POST', 'GET'])
+def singleUser():
+
+    owner = User.query.filter_by(email=session['email']).first()
+
+    if request.method == 'POST':
+        blog_name = request.form['blog']   
+        new_blog = Task(blog_name, owner)
+        db.session.add(new_blog)
+        db.session.commit()
+
+    blogs = Blog.query.filter_by(owner=owner).all()
+    return render_template('singleUser.html', title="Your Blog!", 
+        blogs=blogs)
+
+
 
 # TODO add delete only if logged in
 @app.route('/delete-blog', methods=['POST'])

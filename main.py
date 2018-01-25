@@ -24,6 +24,7 @@ def require_login():
 
 @app.route('/login', methods=['POST', 'GET'])
 def login():
+    login_error = ""
     if request.method == 'POST':
         email = request.form['email']
         password = request.form['password']
@@ -31,11 +32,12 @@ def login():
         if user and user.password == password:
             # user has logged in
             session['email'] = email
-            flash("Logged in")
+            #flash("Logged in")
             return redirect('/')
         else:
-            flash('User password incorrect, or user does not exist', 'error')
-
+            #flash('User password incorrect, or user does not exist', 'error')
+            login_error = "Something is not right.  Check your email and password, and try again."
+            return render_template('login.html', login_error=login_error)
     return render_template('login.html')
 
 @app.route('/logout')

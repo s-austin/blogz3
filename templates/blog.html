@@ -2,17 +2,25 @@
 {% block content %}
 <div class="container">
     <main>
-        <div class="row" style="text-align:center;">
+        <div class="row" style="padding:3rem;">
+            <p style="text-align:center;">
             <h1>All Blog Posts</h1>
-        </div>
-    </div>
- <div class="container">
+            </p>
+        </div><!-- row -->
+    </div><!-- container -->
+ <div class="container" style="padding-left:2rem;">
         
 {% for blog in blogs %}
 <div class="row">
-    <p style="background-color:red;"><h3><a href="./blog?id={{ blog.id }}">{{blog.title}}</a></h3></p>
-    <h4>{{blog.body}}</h4>
+    <h3><a href="./blog?id={{ blog.id }}">{{blog.title}}</a></h3>
+</div>
+<div class="row">
+    <h4>{{blog.body}}</h4><br/>
+</div>
+<div class="row">
     <h5>Published on:&nbsp;&nbsp;{{blog.pub_date}}</h5>
+</div>
+<div class="row">   
     <h5> Written by: &nbsp;&nbsp;<a href="./blog?userid={{ blog.owner_id }}">{{ blog.owner.username}}</a></h5>
 </div><!-- row -->
 {% endfor %}

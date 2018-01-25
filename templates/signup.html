@@ -8,41 +8,29 @@
                 <div class="col">
 <h1>Sign Up!</h1>
 <form action="/signup" method="post">
-    <table>
-            <tr>
-                    <td><label for="username">User Name</label></td>
-                    <td>
-                        <input name="username" type="text" value="{{ username }}">
-                    </td>
-                    <td>{{ username_error }}</td>
-                </tr>
+        <div>
+            <p><label for="username">User Name</label></p>
+            <p><input name="username" type="text" value="{{ username }}"></p>
+            <p style="color:red;" role="alert">{{ username_error }}</p>
+        </div>
 
+        <div>
+            <p><label for="email">Email</label></p>
+            <p><input name="email" type="email" value="{{ email }}"></p>
+            <p style="color:red;" role="alert">{{ email_error }}</p>
+       </div>
+        <div>
+            <p><label for="password">Password</label></p>
+            <p><input name="password" type="password"></p>
+            <p style="color:red;" role="alert">{{ password_error }}</p>
+         </div>
+         <div>
+            <p><label for="verify">Verify Password</label></p>
+            <p><input name="verify" type="password"></p>
+            <p style="color:red;" role="alert">{{ verify_error  }}</p>
+         </div>   
 
-
-        <tr>
-            <td><label for="email">Email</label></td>
-            <td>
-                <input name="email" type="email" value="{{ email }}">
-            </td>
-            <td>{{ email_error }}</td>
-        </tr>
-        <tr>
-            <td><label for="password">Password</label></td>
-            
-            <td>
-                <input name="password" type="password">
-            </td>
-            <td>{{ password_error }}</td>
-        </tr>
-        <tr>
-            <td><label for="verify">Verify Password</label></td>
-            <td>
-                <input name="verify" type="password">
-            </td>
-            <td>{{ verify_error }}</td>
-        </tr>
-    </table>
-    <input type="submit" value="register">
+    <input type="submit" role="button" class="btn btn-info" value="Submit">
 </form>
 </div><!-- col -->
 <div class="col">&nbsp;</div>

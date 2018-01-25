@@ -30,12 +30,14 @@ def login():
         email = request.form['email']
         password = request.form['password']
         user = User.query.filter_by(email=email).first()
-        
+        if not user:
+            emaillogin_error = "Please check the email again"
+            return render_template('login.html', emaillogin_error=emaillogin_error)
         if user and user.password == password:
             # user has logged in
             session['email'] = email
             #flash("Logged in")
-            return redirect('/')
+            return redirect('/newpost')
         else:
             #flash('User password incorrect, or user does not exist', 'error')
             login_error = "Something is not right.  Check your email and password, and try again."

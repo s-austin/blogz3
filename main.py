@@ -26,6 +26,7 @@ def require_login():
 def login():
     login_error = ""
     emaillogin_error = ""
+    pwlogin_error = ""
     if request.method == 'POST':
         email = request.form['email']
         password = request.form['password']
@@ -38,6 +39,9 @@ def login():
             session['email'] = email
             #flash("Logged in")
             return redirect('/newpost')
+        if user.password != password:
+            pwlogin_error = "Incorrect password for this user"
+            return render_template('login.html', pwlogin_error=pwlogin_error)
         else:
             #flash('User password incorrect, or user does not exist', 'error')
             login_error = "Something is not right.  Check your email and password, and try again."

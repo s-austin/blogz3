@@ -92,7 +92,7 @@ def signup():
 
     return render_template('signup.html')            
 
-
+# test is flask still working?
 @app.route('/newpost', methods=['POST', 'GET'])
 def new_post():
     if request.method == 'POST':

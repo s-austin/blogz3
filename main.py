@@ -54,18 +54,15 @@ def require_login():
 @app.route('/login', methods=['POST', 'GET'])
 def login():
     if request.method == 'POST':
-        loggedin_flag = False
         email = request.form['email']
         password = request.form['password']
         user = User.query.filter_by(email=email).first()
         if user and user.password == password:
             # user has logged in
             session['email'] = email
-            loggedin_flag = True
             flash("Logged in")
             return redirect('/')
         else:
-            loggedin_flag = False
             flash('User password incorrect, or user does not exist', 'error')
 
     return render_template('login.html')
@@ -162,7 +159,7 @@ def singleUser():
 
     if request.method == 'POST':
         blog_name = request.form['blog']   
-        new_blog = Task(blog_name, owner)
+        new_blog = Blog(blog_name, owner)
         db.session.add(new_blog)
         db.session.commit()
 

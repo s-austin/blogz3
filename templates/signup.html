@@ -1,7 +1,12 @@
 {% extends "base.html" %}
 
 {% block content %}
-<h1>Register to Blogz by Signing Up!</h1>
+<div class="container">
+        <main>
+            <div class="row">
+                <div class="col">&nbsp;</div>
+                <div class="col">
+<h1>Sign Up!</h1>
 <form action="/signup" method="post">
     <table>
             <tr>
@@ -39,4 +44,9 @@
     </table>
     <input type="submit" value="register">
 </form>
+</div><!-- col -->
+<div class="col">&nbsp;</div>
+</div><!-- row -->
+</main>
+</div><!-- container -->
 {% endblock %}

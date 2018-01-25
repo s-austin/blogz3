@@ -1,14 +1,31 @@
 {% extends 'base.html' %}
 {% block content %}
-
-<h1>Build Your Own Blog</h1>
-
+<div class="container">
+    <main>
+        <div class="row" style="padding:3rem;">
+            <p style="text-align:center;">
+            <h1>All Blog Posts</h1>
+            </p>
+        </div><!-- row -->
+    </div><!-- container -->
+ <div class="container" style="padding-left:2rem;">
+        
 {% for blog in blogs %}
-
-<h2 class="title"><a href="./blog?id={{ post.id }}">{{blog.title}}</a></h2>
-<p class="body">{{blog.body}}</p>
-<p class="author">Written by {{ blog.owner.username }}</p>
-
+<div class="row">
+    <h3><a href="./blog?id={{ blog.id }}">{{blog.title}}</a></h3>
+</div>
+<div class="row">
+    <h4>{{blog.body}}</h4><br/>
+</div>
+<div class="row">
+    <h5>Published on:&nbsp;&nbsp;{{blog.pub_date}}</h5>
+</div>
+<div class="row" style="padding-bottom:2rem;">   
+    <h5> Written by: &nbsp;&nbsp;<a href="./blog?userid={{ blog.owner_id }}">{{ blog.owner.username}}</a></h5>
+</div><!-- row -->
 {% endfor %}
+
+</main>
+</div><!-- container -->
 
 {% endblock %}

@@ -136,7 +136,7 @@ def new_post():
                 title_error = "Please enter a title"
             if body == "":
                 body_error = "Please enter a post body"
-            return render_template('/newpost.html', title=title, body=body, title_error=title_error, body_error=body_error, owner_id=owner_id)
+            return render_template('/newpost.html', title=title, body=body, title_error=title_error, body_error=body_error)
         else:
             post = Blog(title, body, owner.id, pub_date)
             db.session.add(post)
@@ -149,9 +149,7 @@ def new_post():
             return redirect(query_param_url)
 
     return render_template('/newpost.html')
-
-@app.route('/newpost', methods=['POST', 'GET'])        
-
+      
 @app.route('/singleUser', methods=['POST', 'GET'])
 def singleUser():
 

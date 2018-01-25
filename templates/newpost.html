@@ -1,4 +1,3 @@
-
 {% extends "base.html" %}
 
 {% block content %}
@@ -17,20 +16,4 @@
 
     <hr />
 
-    {% if blogs|length == 0 %}
-    <p>No blog yet</p>
-    {% else %}
-
-        <ul>
-            {% for post in posts %}
-            <li>{{post.name}}
-                <form method="POST" action="/delete-post" style="display:inline-block;">
-                    <input type="hidden" name="owner_id" value="{{owner_id}}" />
-                    <input type="submit" value="Done!" />
-                </form>
-            </li>
-            {% endfor %}
-        </ul>
-
-    {% endif %}
 {% endblock %}

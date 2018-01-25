@@ -131,6 +131,9 @@ def new_post():
         owner = User.query.filter_by(email=session['email']).first()
         pub_date = datetime.utcnow()
 
+        title_error = ""
+        body_error = ""
+
         if title == "" or body == "":
             if title == "":
                 title_error = "Please enter a title"

@@ -33,7 +33,6 @@ class Comment(db.Model):
         self.commentowner_id1 = commentowner_id
 # TODO above class Comment is not incorporated into project to incorporate import via main.py if used      
 
-
 class User(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)

@@ -11,14 +11,15 @@
             <div>
             <label>Title </label><br>
             <input type="text" name='title' value="{{title}}" />
-            <p class="error">{{ title_error }}</p>
+            
+            <p style="color:red;" role="alert">{{ title_error }}</p>
              </div>
              <div>
             <label>Your Blog:</label><br>
             <textarea  name='body' value="{{body}}"></textarea>
-            <p class="error">{{ body_error }}</p>
+            <p style="color:red;" role="alert">{{ body_error }}</p>
             </div>
-            <input type="submit" value='Add Post' />
+            <input class="btn btn-info" role="button" type="submit" value='Submit' />
     </form>
 
 </div><!-- col -->

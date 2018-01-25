@@ -53,14 +53,14 @@ def display_blogs():
     #return Blog.query.all()
 
     blog_id = request.args.get("id")
-    user_id = request.args.get("userid")
+    userid = request.args.get("userid")
 
     if blog_id:
         the_blog = Blog.query.get(blog_id)
         return render_template("theBlog.html", the_blog=the_blog)
 
-    if user_id:
-        user_posts = Blog.query.filter_by(owner_id=user_id).all()
+    if userid:
+        user_posts = Blog.query.filter_by(owner_id=userid).all()
         return render_template("singleUser.html", user_posts=user_posts)
 
     posts = Blog.query.order_by(desc(Blog.pub_date))

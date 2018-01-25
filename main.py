@@ -25,10 +25,12 @@ def require_login():
 @app.route('/login', methods=['POST', 'GET'])
 def login():
     login_error = ""
+    emaillogin_error = ""
     if request.method == 'POST':
         email = request.form['email']
         password = request.form['password']
         user = User.query.filter_by(email=email).first()
+        
         if user and user.password == password:
             # user has logged in
             session['email'] = email
@@ -109,7 +111,7 @@ def signup():
             return redirect('/newpost')
         else:
             # TODO consider using flash("User already exists")
-            return render_template('signup.html', email_error=email_error, password_error=password_error, verify_error=verify_error)
+            return render_template('signup.html', email_error=email_error, password_error=password_error, verify_error=verify_error, username_error=username_error)
 
     return render_template('signup.html')            
 

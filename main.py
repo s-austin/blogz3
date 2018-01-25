@@ -84,7 +84,6 @@ def signup():
             db.session.flush()   #from Adnan's example flush session to get id of inserted row
             db.session.commit()
             session['email'] = email
-            loggedin_flag = True
             #session['user_id'] = new_user.id
             return redirect('/newpost')
         else:

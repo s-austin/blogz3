@@ -48,23 +48,26 @@ def logout():
 # See video time frame 10 minute mark https://education.launchcode.org/web-fundamentals/videos/forms-in-flask/
 @app.route("/blog", methods=['GET'])
 def display_blogs():
-    blogs = Blog.query.all()
-    return render_template("blog.html", blogs=blogs)
-    #return Blog.query.all()
+
 
     blog_id = request.args.get("id")
-    userid = request.args.get("userid")
+    user_ID= request.args.get("userid")
+    #change naming convention to better track what is going on....
 
     if blog_id:
         the_blog = Blog.query.get(blog_id)
         return render_template("theBlog.html", the_blog=the_blog)
 
-    if userid:
-        user_posts = Blog.query.filter_by(owner_id=userid).all()
+    if user_ID:
+        user_posts = Blog.query.filter_by(owner_id=user_ID).all()
         return render_template("singleUser.html", user_posts=user_posts)
 
-    posts = Blog.query.order_by(desc(Blog.pub_date))
-    return render_template("blog.html", posts=posts)
+    #posts = Blog.query.order_by(desc(Blog.pub_date))
+    #return render_template("blog.html", posts=posts)
+
+    blogs = Blog.query.all()
+    return render_template("blog.html", blogs=blogs)
+    #return Blog.query.all()
 
 @app.route('/signup', methods=['POST', 'GET'])
 def signup():

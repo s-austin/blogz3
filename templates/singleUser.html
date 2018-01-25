@@ -10,18 +10,15 @@
     </div><!-- container -->
  <div class="container" style="padding-left:2rem;">
         
-{% for blog in blogs %}
+{% for post in user_posts %}
 <div class="row">
-    <h3><a href="./blog?id={{ blog.id }}">{{blog.title}}</a></h3>
+    <h3><a href="./blog?id={{ post.id }}">{{post.title}}</a></h3>
 </div>
 <div class="row">
-    <h4>{{blog.body}}</h4><br/>
-</div>
-<div class="row">
-    <h5>Published on:&nbsp;&nbsp;{{blog.pub_date}}</h5>
+    <h4>{{post.body}}</h4><br/>
 </div>
 <div class="row" style="padding-bottom:2rem;">   
-    <h5> Written by: &nbsp;&nbsp;<a href="./blog?userid={{ blog.owner_id }}">{{ blog.owner.username}}</a></h5>
+    <h5> Written by: &nbsp;&nbsp;{{ post.owner.username}}</h5>
 </div><!-- row -->
 {% endfor %}
 

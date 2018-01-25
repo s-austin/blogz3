@@ -65,7 +65,9 @@ def display_blogs():
     #posts = Blog.query.order_by(desc(Blog.pub_date))
     #return render_template("blog.html", posts=posts)
 
-    blogs = Blog.query.all()
+    blogs = Blog.query.order_by(Blog.pub_date.desc())
+    #https://stackoverflow.com/questions/4186062/sqlalchemy-order-by-descending
+    #blogs = Blog.query.all()
     return render_template("blog.html", blogs=blogs)
     #return Blog.query.all()
 

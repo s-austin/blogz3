@@ -45,6 +45,7 @@ def logout():
         flash('You are logged out')
         return render_template('login.html')
 
+# See video time frame 10 minute mark https://education.launchcode.org/web-fundamentals/videos/forms-in-flask/
 @app.route("/blog", methods=['GET'])
 def display_blogs():
     blogs = Blog.query.all()
@@ -114,6 +115,7 @@ def new_post():
         else:
             post = Blog(title, body, owner.id, pub_date)
             db.session.add(post)
+            db.session.flush()   #from Adnan's example flush session to get id of inserted row
             db.session.commit()
             blog = Blog.query.order_by('-id').first()
             #the hyphen beofre the id is a wildcard for the page page
